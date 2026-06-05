@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bard120 — Developer Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#e0e0f0;overflow-x:hidden}
+        #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,0.15);display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .nav-links{display:flex;gap:2rem;list-style:none}
+        .nav-links a{color:#888;text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.3s}
+        .nav-links a:hover{color:#e0e0f0}
+        section{padding:6rem 2rem;position:relative;z-index:1;max-width:1100px;margin:0 auto}
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
+        .hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
+        .hero h1 .g{background:linear-gradient(135deg,#6366f1,#22d3ee,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:s 3s ease-in-out infinite}
+        @keyframes s{0%,100%{background-position:0% center}50%{background-position:200% center}}
+        .hero p{font-size:1.2rem;color:#888;margin-bottom:2rem}
+        .btn{padding:0.8rem 2rem;border-radius:12px;font-size:0.95rem;font-weight:600;text-decoration:none;transition:all 0.3s;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:0.5rem}
+        .btn-p{background:linear-gradient(135deg,#6366f1,#7c3aed);color:white;box-shadow:0 4px 20px rgba(99,102,241,0.3)}
+        .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.5)}
+        .btn-o{background:transparent;color:#e0e0f0;border:1.5px solid #2a2a3a}
+        .btn-o:hover{border-color:#6366f1;background:rgba(99,102,241,0.1)}
+        .btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+        .sh{text-align:center;margin-bottom:3rem}
+        .sh h2{font-size:2.2rem;font-weight:700;margin-bottom:0.5rem}
+        .sh p{color:#888;font-size:1.05rem}
+        .sh .line{width:60px;height:3px;background:linear-gradient(90deg,#6366f1,#a78bfa);margin:1rem auto 0;border-radius:2px}
+        .skills{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-top:2rem}
+        .skill{padding:0.5rem 1.2rem;background:#16161f;border:1px solid #2a2a3a;border-radius:50px;font-size:0.85rem;transition:all 0.3s}
+        .skill:hover{border-color:#6366f1;background:rgba(99,102,241,0.15);transform:translateY(-2px)}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem}
+        .card{background:#16161f;border:1px solid #2a2a3a;border-radius:16px;padding:2rem;transition:all 0.4s;position:relative;overflow:hidden}
+        .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6366f1,#a78bfa);transform:scaleX(0);transition:transform 0.4s}
+        .card:hover{transform:translateY(-5px);border-color:rgba(99,102,241,0.3)}
+        .card:hover::before{transform:scaleX(1)}
+        .card .icon{font-size:2rem;margin-bottom:0.8rem}
+        .card h3{font-size:1.15rem;margin-bottom:0.5rem}
+        .card p{color:#888;font-size:0.9rem;line-height:1.6;margin-bottom:1rem}
+        .card .tech{display:flex;flex-wrap:wrap;gap:0.4rem}
+        .card .tech span{padding:0.25rem 0.7rem;background:rgba(99,102,241,0.1);border-radius:6px;font-size:0.75rem;color:#a78bfa}
+        .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+        .contact-link{display:flex;align-items:center;gap:0.5rem;padding:0.8rem 1.5rem;background:#16161f;border:1px solid #2a2a3a;border-radius:12px;color:#e0e0f0;text-decoration:none;transition:all 0.3s;font-size:0.9rem}
+        .contact-link:hover{border-color:#6366f1;background:rgba(99,102,241,0.1);transform:translateY(-2px)}
+        footer{text-align:center;padding:2rem;color:#555;font-size:0.85rem;border-top:1px solid #2a2a3a;position:relative;z-index:1}
+        .reveal{opacity:0;transform:translateY(30px);transition:all 0.8s}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        .cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.08),transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%)}
+        @media(max-width:768px){.nav-links{display:none}.grid{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="cursor-glow" id="glow"></div>
+    <nav><div class="logo">B.</div><ul class="nav-links"><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+    <section class="hero" id="home">
+        <div>
+            <h1>Hi, I'm <span class="g">Bard120</span></h1>
+            <p>A developer who builds tools, apps, and experiments for the web.</p>
+            <div class="btns"><a href="#projects" class="btn btn-p">View Projects</a><a href="#contact" class="btn btn-o">Get in Touch</a></div>
+        </div>
+    </section>
+    <section id="about"><div class="sh reveal"><h2>About Me</h2><p>Builder of things, breaker of code</p><div class="line"></div></div>
+    <div class="reveal" style="text-align:center;max-width:700px;margin:0 auto"><p style="color:#888;line-height:1.8;font-size:1.05rem">I build web applications, developer tools, and interactive experiences. Focused on clean code, modern UI, and solving real problems. Always exploring new technologies and frameworks.</p></div></section>
+    <section id="skills"><div class="sh reveal"><h2>Skills</h2><p>Technologies I work with</p><div class="line"></div></div>
+    <div class="reveal"><div class="skills">
+        <span class="skill">JavaScript</span><span class="skill">TypeScript</span><span class="skill">Python</span><span class="skill">Go</span>
+        <span class="skill">React</span><span class="skill">Node.js</span><span class="skill">HTML/CSS</span><span class="skill">WebSocket</span>
+        <span class="skill">PostgreSQL</span><span class="skill">Docker</span><span class="skill">Git</span><span class="skill">REST APIs</span>
+    </div></div></section>
+    <section id="projects"><div class="sh reveal"><h2>Projects</h2><p>Things I've built</p><div class="line"></div></div>
+    <div class="grid">
+        <div class="card reveal"><div class="icon">[E]</div><h3>Expense Tracker</h3><p>Daily expense tracking with visual charts and CSV export.</p><div class="tech"><span>JavaScript</span><span>Chart.js</span></div></div>
+        <div class="card reveal"><div class="icon">[Q]</div><h3>Quiz App</h3><p>Interactive quiz with timer, scoring, and leaderboard.</p><div class="tech"><span>JavaScript</span><span>HTML</span></div></div>
+        <div class="card reveal"><div class="icon">[M]</div><h3>Music Player</h3><p>Web music player with visualizer and equalizer.</p><div class="tech"><span>JavaScript</span><span>Web Audio</span></div></div>
+        <div class="card reveal"><div class="icon">[C]</div><h3>Chat App</h3><p>Real-time chat with WebSocket, rooms, and typing indicators.</p><div class="tech"><span>TypeScript</span><span>WebSocket</span></div></div>
+        <div class="card reveal"><div class="icon">[K]</div><h3>Kanban Board</h3><p>Drag & drop task board for project management.</p><div class="tech"><span>JavaScript</span><span>Drag API</span></div></div>
+        <div class="card reveal"><div class="icon">[D]</div><h3>DevTools Hub</h3><p>Developer tools: JSON formatter, Base64, regex tester, color picker.</p><div class="tech"><span>JavaScript</span><span>HTML</span></div></div>
+    </div></section>
+    <section id="contact"><div class="sh reveal"><h2>Contact</h2><p>Let's connect</p><div class="line"></div></div>
+    <div class="reveal"><div class="contact-links">
+        <a href="https://github.com/bard120" class="contact-link" target="_blank">GitHub</a>
+        <a href="mailto:bard120@users.noreply.github.com" class="contact-link">Email</a>
+    </div></div></section>
+    <footer>Built by Bard120</footer>
+    <script>
+        const c=document.getElementById('particles'),x=c.getContext('2d');let p=[],m={x:null,y:null};function rc(){c.width=innerWidth;c.height=innerHeight}rc();addEventListener('resize',rc);document.addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY;document.getElementById('glow').style.left=e.clientX+'px';document.getElementById('glow').style.top=e.clientY+'px'});class P{constructor(){this.reset()}reset(){this.x=Math.random()*c.width;this.y=Math.random()*c.height;this.s=Math.random()*2+0.5;this.vx=(Math.random()-.5)*.5;this.vy=(Math.random()-.5)*.5;this.o=Math.random()*.5+.1}update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>c.width)this.vx*=-1;if(this.y<0||this.y>c.height)this.vy*=-1;if(m.x&&m.y){const d=Math.hypot(m.x-this.x,m.y-this.y);if(d<150){this.x-=(m.x-this.x)*.01;this.y-=(m.y-this.y)*.01}}}draw(){x.beginPath();x.arc(this.x,this.y,this.s,0,Math.PI*2);x.fillStyle=`rgba(99,102,241,${this.o})`;x.fill()}}for(let i=0;i<80;i++)p.push(new P);function anim(){x.clearRect(0,0,c.width,c.height);p.forEach(i=>{i.update();i.draw()});for(let i=0;i<p.length;i++)for(let j=i+1;j<p.length;j++){const d=Math.hypot(p[i].x-p[j].x,p[i].y-p[j].y);if(d<120){x.beginPath();x.strokeStyle=`rgba(99,102,241,${.1*(1-d/120)})`;x.lineWidth=.5;x.moveTo(p[i].x,p[i].y);x.lineTo(p[j].x,p[j].y);x.stroke()}}requestAnimationFrame(anim)}anim();document.querySelectorAll('.reveal').forEach(el=>{new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('active')})},{threshold:.1}).observe(el)});document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+    </script>
+</body>
+</html>
